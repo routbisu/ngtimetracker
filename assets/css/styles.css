@@ -294,6 +294,6 @@ ul.sub-menu li a:hover {
     font-weight: normal;
 }
 
-a[ng-click]{
+a[ng-click], a[ui-sref] {
     cursor: pointer;
 }

@@ -30,8 +30,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9 text-right user-name hidden-xs">
-                <a href="#" onclick="logOut();">Logout<img class="avatar-icon" src="assets/img/profile.jpg" alt=""></a>
+            <div class="col-sm-9 text-right user-name hidden-xs" ng-controller="menuCtrl">
+                <a ng-click="logOut()">Logout<img class="avatar-icon" src="assets/img/profile.jpg" alt=""></a>
             </div>
         </div>
     </nav>
@@ -45,7 +45,7 @@
                 <li><a href="#">Self</a></li>
                 <ul class="sub-menu">
                     <li class="active">
-                        <a href="index.html">
+                        <a ui-sref="home">
                         <i class="fa fa-tachometer"></i>Timesheet Entry
                         </a>
                     </li>
@@ -53,7 +53,7 @@
                 <li><a href="#">Manager</a></li>
                 <ul class="sub-menu">
                     <li>
-                        <a href="reports.html">
+                        <a ui-sref="reports">
                         <i class="fa fa-bar-chart"></i>Timesheet Report
                         </a>
                     </li>
@@ -63,8 +63,8 @@
                         </a>
                     </li>
                 </ul>
-                <li class="mobile-signout">
-                    <a href="#" onclick="logOut();">
+                <li class="mobile-signout" ng-controller="menuCtrl">
+                    <a ng-click="logOut()">
                     <i class="fa fa-sign-out"></i>Logout
                     </a>
                 </li>

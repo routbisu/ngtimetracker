@@ -1,5 +1,14 @@
 var app = angular.module("timetrackerApp", ['ui.router']);
 
+app.controller('menuCtrl', function($scope, $state, LocalStorageMockDBService) {
+    $scope.test = "Hello";
+    $scope.logOut = function() {
+        console.log('Logged out'); 
+        LocalStorageMockDBService.logOut();   
+        $state.go('login');  
+    }
+});
+
 // Add timesheet entry service
 app.service('LocalStorageMockDBService', function () {
 
@@ -47,7 +56,6 @@ app.service('LocalStorageMockDBService', function () {
     this.logOut = function () {
         sessionStorage.removeItem('LoggedInID');
         sessionStorage.removeItem('LoggedInName');
-        redirectTo('login.html');
     }
 
     // Calculate time difference from Locale Time Strings
@@ -370,7 +378,7 @@ app.controller('loginCtrl', function ($scope, $state, LocalStorageMockDBService)
 });
 
 // Home Controller
-app.controller('homeCtrl', function ($scope, $state, LocalStorageMockDBService) {
+app.controller('homeCtrl', function ($scope, $state, $timeout, LocalStorageMockDBService) {
     // Check if local storage is available
     $scope.noLocalStorage = LocalStorageMockDBService.checkLocalStorage();
 
@@ -386,14 +394,71 @@ app.controller('homeCtrl', function ($scope, $state, LocalStorageMockDBService) 
     // Add timesheet
     $scope.saveTimeSheet = function () {
         var timeSheetData = {
-            EmpID: $scope.empId,
+            EmpID: $scope.empID,
             EmpName: $scope.empName,
             Date: $scope.date,
             InTime: $scope.inTime,
             OutTime: $scope.outTime,
-            Hours: hours
+            Hours: $scope.hours
         };
         console.log(timeSheetData);
+
+        // Validations
+        if(!timeSheetData.Date) { 
+            $scope.errorMessage = 'Please enter date';
+            return;
+        }
+
+        if(!timeSheetData.InTime) { 
+            $scope.errorMessage = 'Please enter in time';
+            return;
+        }
+
+        if(!timeSheetData.OutTime) { 
+            $scope.errorMessage = 'Please enter out time';
+            return;
+        }
+        
         LocalStorageMockDBService.addTimesheet(timeSheetData);
+        $scope.successMessage = 'Timesheet data saved successfully';
+        $timeout(function() { 
+            $scope.successMessage = null 
+            $scope.date = '';
+            $scope.inTime = '';
+            $scope.outTime = '';
+            $scope.hours = '';
+        }, 3000);
     }
+
+    // Show duration
+    $scope.showDuration = function() {
+        var duration = LocalStorageMockDBService.calculateDuration($scope.inTime, $scope.outTime, function() {
+            $scope.lessHours = true;
+        }, function() { $scope.lessHours = false; });
+        
+        if(duration) {
+            $scope.hours = duration;
+        } 
+    }
+
+    // Show existing time data for a date
+    $scope.showExistingTime = function() {
+        var empData = LocalStorageMockDBService.fetchTimeSheetForEmp(sessionStorage.LoggedInID, $scope.date);
+        if(empData) {
+            $scope.inTime = empData.InTime;
+            $scope.outTime = empData.OutTime;
+            $scope.showDuration();
+        } else {
+            $scope.inTime = '';
+            $scope.outTime = '';
+            $scope.hours = '';
+        }
+    }
+
+    function init() {
+        $scope.empID = sessionStorage.LoggedInID;
+        $scope.empName = sessionStorage.LoggedInName;
+    }
+
+    init();
 });
