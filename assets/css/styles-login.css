@@ -1,0 +1,42 @@
+body {
+    font-family: 'Segoe UI', Verdana, Geneva, Tahoma, sans-serif;
+    background: #E11936;
+    color: #666;
+}
+
+.login-container {
+    width: 300px;
+    margin: auto;
+    margin-top: 75px;
+}
+
+.login-container img {
+    width: 110px;    
+}
+
+.login-box {
+    margin-top: 10px;
+    background: #FFF;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 85%;
+}
+
+.login-box button {
+    width: 100%;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.signup-box {
+    margin-top: 10px;
+    color: #FFF;
+}
+
+.signup-box a {
+    color: #FFF;
+    font-size: 85%;
+    font-weight: normal;
+}

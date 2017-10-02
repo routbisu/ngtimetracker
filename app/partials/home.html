@@ -1,0 +1,29 @@
+<div class="alert alert-warning" ng-show="noLocalStorage">Browser doesn't support local storage! Please use Google Chrome or Firefox.</div>
+<h3 class="center-text"><i class="fa fa-big fa-clock-o"></i>Time Tracker</h3>
+<h4>Enter timesheet details</h4>
+<div class="alert alert-success" ng-show="successMessage"></div>
+<div class="alert alert-danger" ng-show="errorMessage"></div>
+
+<div class="row main-form">
+    <div class="col-sm-2 col-xs-12">
+        <input type="text" class="form-control" id="empId" ng-model="empId" placeholder="Employee ID" disabled>
+    </div>
+    <div class="col-sm-2 col-xs-12">
+        <input type="text" class="form-control" id="empName" ng-model="empName" placeholder="Employee Name" disabled>
+    </div>
+    <div class="col-sm-2 col-xs-12">
+        <input type="text" class="form-control" id="date" ng-model="date" placeholder="Date">
+    </div>
+    <div class="col-sm-2 col-xs-12">
+        <input type="text" class="form-control" id="inTime" ng-model="inTime" placeholder="In Time (hh:mm)">
+    </div>
+    <div class="col-sm-2 col-xs-12">
+        <input type="text" class="form-control" id="outTime" ng-model="outTime" placeholder="Out Time (hh:mm)">
+    </div>
+    <div class="col-sm-1 col-xs-12">
+        <input type="text" class="form-control" id="hours" ng-model="hours" placeholder="Hours" disabled>
+    </div>
+    <div class="col-sm-1 col-xs-12">
+        <button class="btn btn-primary" ng-click="saveTimeSheet()">Save</button>
+    </div>
+</div>

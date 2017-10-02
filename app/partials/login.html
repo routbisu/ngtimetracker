@@ -1,0 +1,45 @@
+<div class="login-super-container">
+    <div class="login-container">
+        <img src="assets/img/logo.png" alt="Tech Mahindra Logo">
+        <div class="login-box">
+            <div class="alert alert-warning" ng-show="errorMessage">{{ errorMessage }}</div>
+            <form ng-show="loginArea">
+                <div class="form-group">
+                    <label for="txtLoginEmpID">Employee ID</label>
+                    <input type="text" class="form-control" ng-model="txtLoginEmpID">
+                </div>
+                <div class="form-group">
+                    <label for="txtLoginPassword">Password</label>
+                    <input type="password" class="form-control" ng-model="txtLoginPassword">
+                </div>
+                <button ng-click="checkLogin()" class="btn btn-primary">
+                    <i class="fa fa-sign-in"></i> Sign In</button>
+            </form>
+
+            <form ng-show="signupArea">
+                <div class="form-group">
+                    <label for="txtSignupEmpID">Employee ID</label>
+                    <input type="number" min="0" step="1" min="10000" max="99999" class="form-control" 
+                        ng-model="txtSignupEmpID">
+                </div>
+                <div class="form-group">
+                    <label for="txtSignupEmpName">Employee Name</label>
+                    <input type="text" class="form-control" ng-model="txtSignupEmpName">
+                </div>
+                <div class="form-group">
+                    <label for="txtSignupPassword">Password</label>
+                    <input type="password" class="form-control" ng-model="txtSignupPassword">
+                </div>
+                <div class="form-group">
+                    <label for="txtSignupPassword1">Confirm Password</label>
+                    <input type="password" class="form-control" ng-model="txtSignupPassword1">
+                </div>
+                <button type="submit" class="btn btn-success" ng-click="signUp()"><i class="fa fa-plus"></i> Add Employee</button>
+            </form>
+        </div>
+        <div class="signup-box center-align">
+            <a ng-show="signupLink" ng-click="showSignUpForm()"><i class="fa fa-plus"></i> Add new employee</a>
+            <a ng-show="loginLink" ng-click="showLoginForm()"><i class="fa fa-user"></i> Employee Login</a>
+        </div>
+    </div>
+</div>

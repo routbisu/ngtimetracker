@@ -1,0 +1,299 @@
+body {
+    font-family: 'Segoe UI', Verdana, Geneva, Tahoma, sans-serif;
+    color: #666;
+}
+
+.container {
+    padding: 0px !important;
+}
+
+.center-text {
+    text-align: center
+}
+
+.generate-csv {
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+h3 {
+    color: #666;
+}
+
+.navbar {
+    border-radius: 0px !important;
+    background: #E11936 !important;
+    color: #FFF !important;
+    border: none;
+    box-shadow: 0px 0px 6px grey;
+}
+
+a.navbar-brand {
+    color: #32CCCC !important;
+	font-size: 20px;
+}
+
+.navbar-default .navbar-nav > li >a {
+    color: #FFF;
+    font-weight: 600;
+    font-size: 90%;
+}
+
+.navbar-default .navbar-nav > .active > a, ul.navbar-nav :hover {
+    color: #fff !important;
+    background-color: #EE667A;
+    transition: 0.5s;
+}
+
+h4 {
+    color: #666;
+}
+
+ul.navbar-nav {
+    color: #FFF !important;
+}
+
+.navbar-brand {
+    padding-left: 5px !important;
+}
+
+.navbar-brand > i, .navbar-brand > img {
+    display: inline !important;
+}
+
+.navbar-brand > a {
+    color: #EAEAEA;
+    text-decoration: none;
+}
+
+.navbar-brand img {
+    margin-bottom: 10px !important;
+}
+
+.user-name {
+    vertical-align: middle;
+    margin: 7px 0px;
+    color: #EAEAEA;
+    font-size: 90%;
+    font-weight: 600;
+}
+
+.user-name a {
+    color: #EAEAEA;
+    text-decoration: none;
+}
+
+.avatar-icon {
+    border-radius: 50%;
+    vertical-align: middle;
+    width: 40px;
+    margin-left: 5px;
+}
+
+/*
+ul.navbar-nav :hover {
+    background-color : #DDD !important;
+    transition: 0.5s;
+    color: #FFF;
+}
+*/
+
+.glyphicon-time {
+	font-size: 16px;
+	right: 5px;
+}
+
+[class*="col-"] {
+    padding: 0px !important;
+}
+
+.main-form > [class*="col-"] {
+    padding: 3px !important;
+}
+
+.form-control {
+    margin: 0px !important;
+}
+
+.main-form {
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+
+.red-border {
+    border: 1px solid red;
+}
+
+/* Styles for the Employee Portal */
+
+.main-menu {
+    background-color: #F1F1F1;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+    padding: 10px;
+    box-shadow: 0px 0px 6px grey;
+}
+
+.main-menu h4 {
+    font-size: 100%;
+    font-weight: 600;
+    margin: 5px 10px 8px 5px;
+}
+
+.main-menu h6 {
+    font-size: 75%;
+    font-weight: 600;
+    color: #999;
+    margin: 5px 10px 8px 5px;
+}
+
+.main-menu ul li {
+    list-style: none;
+    padding: 5px;
+    margin-left: -40px;
+}
+
+ul.sub-menu {
+    margin-left: -20px;
+}
+
+ul.sub-menu li a {
+    display: block;
+}
+
+ul.sub-menu li a:hover {
+    border-right: 4px solid #E11936;
+}
+
+.main-menu ul li a {
+    font-size: 90%;
+    text-decoration: none;
+    color: #E11936;
+    font-weight: 600;
+}
+
+.body-wrapper {
+    margin-left: 220px;
+}
+
+.fa {
+    margin-right: 7px;
+    font-size: 15px;
+}
+
+.fa-big {
+    font-size: 25px !important;
+}
+
+.thin-border-bottom {
+    border-bottom: 1px solid #E1E1E1;
+    padding-bottom: 5px;
+}
+
+.color-eaeaea {
+    color: #EAEAEA;
+}
+
+.min-hours {
+    border: 1px solid #f44242;
+    background-color: #ffe2e2 !important;
+}
+
+
+
+/* .menu-hidden {
+    visibility: hidden !important;
+} */
+
+/* Responsive Menu */
+/* For Mobile */
+@media (max-width: 500px) {
+    .main-menu { 
+        z-index: 1000;
+        position: fixed;
+        width: 0px;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        transition: 0.3s;
+    }
+    .body-wrapper {
+        margin-left: 0px;
+    }
+}
+/* For Desktop */
+@media (min-width: 500px) { 
+    .hamburger-menu {
+        display: none;
+    }
+    .navbar-brand {
+        padding-left: 20px !important;
+    }
+    .mobile-signout {
+        display: none;
+    }
+}
+
+.menu-visible {
+    visibility: visible;
+    width: 220px;
+    transition: 0.3s;
+}
+
+
+/* Styles for the login page */
+.login-super-container {
+    font-family: 'Segoe UI', Verdana, Geneva, Tahoma, sans-serif;
+    background: #E11936;
+    color: #666;
+    z-index: 3000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.login-container {
+    width: 300px;
+    margin: auto;
+    margin-top: 75px;
+}
+
+.login-container img {
+    width: 110px;    
+}
+
+.login-box {
+    margin-top: 10px;
+    background: #FFF;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 85%;
+}
+
+.login-box button {
+    width: 100%;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.signup-box {
+    margin-top: 10px;
+    color: #FFF;
+}
+
+.signup-box a {
+    color: #FFF;
+    font-size: 85%;
+    font-weight: normal;
+}
+
+a[ng-click]{
+    cursor: pointer;
+}

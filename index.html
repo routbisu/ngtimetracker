@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="icon" href="assets/img/favicon.ico">
+    <title>Timetracker Home</title>
+</head>
+
+<body ng-app="timetrackerApp">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="col-xs-12 col-sm-3">
+                <div class="navbar-header">
+                    <div class="navbar-brand">
+                        <span class="hamburger-menu">
+                            <i class="fa fa-big fa-bars color-eaeaea"></i>
+                        </span>
+                        <a href="index.html">
+                            <img src="assets/img/logo.png" alt="Logo" width="85px" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9 text-right user-name hidden-xs">
+                <a href="#" onclick="logOut();">Logout<img class="avatar-icon" src="assets/img/profile.jpg" alt=""></a>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="main-menu" id="main-menu">
+            <div class="thin-border-bottom">
+                <h4 id="logInUserWelcome"></h4>
+                <h6><i class="fa fa-clock-o"></i>Last log-in <span id="last-login-duration"></span></h6>
+            </div>
+            <ul>
+                <li><a href="#">Self</a></li>
+                <ul class="sub-menu">
+                    <li class="active">
+                        <a href="index.html">
+                        <i class="fa fa-tachometer"></i>Timesheet Entry
+                        </a>
+                    </li>
+                </ul>
+                <li><a href="#">Manager</a></li>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="reports.html">
+                        <i class="fa fa-bar-chart"></i>Timesheet Report
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="resetData">
+                        <i class="fa fa-cog"></i>Erase All Data
+                        </a>
+                    </li>
+                </ul>
+                <li class="mobile-signout">
+                    <a href="#" onclick="logOut();">
+                    <i class="fa fa-sign-out"></i>Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="body-wrapper" ui-view>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="app/app.js"></script>
+</body>
+
+</html>
