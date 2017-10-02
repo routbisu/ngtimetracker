@@ -37,9 +37,9 @@
     </nav>
     <div class="container-fluid">
         <div class="main-menu" id="main-menu">
-            <div class="thin-border-bottom">
-                <h4 id="logInUserWelcome"></h4>
-                <h6><i class="fa fa-clock-o"></i>Last log-in <span id="last-login-duration"></span></h6>
+            <div class="thin-border-bottom" ng-controller="menuCtrl">
+                <h4>Welcome, {{ loggedInUser }}</h4>
+                <h6><i class="fa fa-clock-o"></i>Last log-in {{ lastLoginTime }}</h6>
             </div>
             <ul>
                 <li><a href="#">Self</a></li>
@@ -57,8 +57,8 @@
                         <i class="fa fa-bar-chart"></i>Timesheet Report
                         </a>
                     </li>
-                    <li>
-                        <a href="#" id="resetData">
+                    <li ng-controller="menuCtrl">
+                        <a ng-click="eraseAllData()">
                         <i class="fa fa-cog"></i>Erase All Data
                         </a>
                     </li>
@@ -82,6 +82,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
     <script src="assets/js/papaparse.min.js"></script>
     <script src="app/app.js"></script>
+    <script>
+        $(document).ready(function () {
+            // var loggedInUser = getLoggedInUser();
+            // $("#logInUserWelcome").text('Welcome, ' + loggedInUser.EmpName);
+
+            $(".hamburger-menu").click(function (evt) {
+                $(".main-menu").addClass('menu-visible');
+                evt.stopPropagation();
+            });
+
+            $(window).click(function () {
+                $(".main-menu").removeClass('menu-visible');
+            });
+
+            $(".main-menu").click(function (evt) {
+                evt.stopPropagation();
+            });
+
+            // Call get last login duration every 1 min
+            setInterval(function () {
+                var lastLoginDuration = getLastLoginDuration();
+                $("#last-login-duration").text(lastLoginDuration);
+            }, 10000);
+        });
+    </script>
 </body>
 
 </html>

@@ -7,6 +7,13 @@ app.controller('menuCtrl', function($scope, $state, LocalStorageMockDBService) {
         LocalStorageMockDBService.logOut();   
         $state.go('login');  
     }
+    $scope.eraseAllData = function() {
+        if(confirm('Are you sure you want to delete all the data?')) {
+            LocalStorageMockDBService.resetData();
+        }
+    }
+    $scope.loggedInUser = LocalStorageMockDBService.getLoggedInUser().EmpName;
+    $scope.lastLoginTime = LocalStorageMockDBService.getLastLoginDuration();
 });
 
 // Add timesheet entry service
@@ -86,7 +93,7 @@ app.service('LocalStorageMockDBService', function () {
     // Get last login duration (n mins/hours ago)
     this.getLastLoginDuration = function () {
         var nowTimeString = (new Date()).toLocaleString();
-        return calculateTimeDifference(localStorage.LastLoginTime, nowTimeString);
+        return this.calculateTimeDifference(localStorage.LastLoginTime, nowTimeString);
     }
 
     this.setLastLoginTime = function () {
@@ -295,7 +302,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 
 // Login controller
-app.controller('loginCtrl', function ($scope, $state, LocalStorageMockDBService) {
+app.controller('loginCtrl', function ($scope, $rootScope, $state, LocalStorageMockDBService) {
     $scope.showSignUpForm = function() {
         $scope.signupArea = true;
         $scope.loginArea = false;
@@ -319,6 +326,8 @@ app.controller('loginCtrl', function ($scope, $state, LocalStorageMockDBService)
             // and redirect to index page
             sessionStorage.LoggedInID = user.EmpID;
             sessionStorage.LoggedInName = user.EmpName;
+            $rootScope.loggedInUser = user.EmpName;
+
             $state.go('home');
         } else {
             $scope.errorMessage = 'Incorrect Employee ID / Password.';
