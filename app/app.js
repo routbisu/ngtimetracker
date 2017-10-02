@@ -116,11 +116,10 @@ app.service('LocalStorageMockDBService', function () {
     }
 
     this.fetchTimesheet = function (empID, isAll) {
+        var timesheetData = JSON.parse(localStorage.TimeTrackerData);
         if (isAll) {
-            return JSON.parse(localStorage.TimeTrackerData);
+            return timesheetData;
         } else {
-            // Fetch timesheet data
-            var timesheetData = JSON.parse(localStorage.TimeTrackerData);
             // Filter for employee ID
             var employeeData = timesheetData.filter(function (data) {
                 return data.EmpID === empID;
@@ -254,7 +253,7 @@ app.service('LocalStorageMockDBService', function () {
         var csvData = Papa.unparse(JSON.parse(sessionStorage.lastReport));
         console.log(csvData);
         if (csvData && csvData.length > 0)
-            downloadCSV('TimesheetReport.csv', csvData);
+            this.downloadCSV('TimesheetReport.csv', csvData);
         else
             alert('There was an unexpected error');
     }
@@ -286,7 +285,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         // Reports state
         .state('reports', {
             url: '/reports',
-            templateUrl: 'app/partials/reports.html'
+            templateUrl: 'app/partials/reports.html',
+            controller: 'reportsCtrl'
         });
 
     $urlRouterProvider.otherwise('/home');
@@ -461,4 +461,53 @@ app.controller('homeCtrl', function ($scope, $state, $timeout, LocalStorageMockD
     }
 
     init();
+});
+
+// Reports Controller
+app.controller('reportsCtrl', function($scope, LocalStorageMockDBService) {
+    $scope.isFetchButtonEnabled = true;
+
+    $scope.showFetchButton = function() {
+        if($scope.searchEmpID != '')
+            $scope.isFetchButtonEnabled = false;
+        else 
+            $scope.isFetchButtonEnabled = true;
+    }
+
+    $scope.EmployeeTimesheetData;
+    $scope.showEmpData = false;
+
+    $scope.FetchTimesheet = function() {
+        $scope.reportsErrorMsg = null;
+        var data = LocalStorageMockDBService.fetchTimesheet($scope.searchEmpID);
+        console.log(data);
+        if(data && data.length > 0) {
+            $scope.EmployeeTimesheetData = data;
+            $scope.showEmpData = true;
+            sessionStorage.lastReport = JSON.stringify($scope.EmployeeTimesheetData);
+        } else {
+            $scope.reportsErrorMsg = 'There were no records found for this employee';
+            $scope.showEmpData = false;
+        }
+    }
+
+    // Show data for all employees
+    $scope.showAll = function() {
+        $scope.reportsErrorMsg = null;
+        var data = LocalStorageMockDBService.fetchTimesheet(true, true);
+        if(data && data.length > 0) {
+            $scope.EmployeeTimesheetData = data;
+            $scope.showEmpData = true;
+            sessionStorage.lastReport = JSON.stringify($scope.EmployeeTimesheetData);
+        } else {
+            $scope.reportsErrorMsg = 'There were no records found for this employee';
+            $scope.showEmpData = false;
+        }
+    }
+
+    // Download CSV file
+    $scope.downloadCSV = function() {
+        LocalStorageMockDBService.generateCSV();
+    }
+    
 });
